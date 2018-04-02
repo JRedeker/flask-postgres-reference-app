@@ -6,4 +6,5 @@ It includes a sample connection to a ``postgresql`` database
 🐍 ``Python 3.5.4`` 
 
 ## Implementation Notes
+- Install dependencies from ``requirements.txt``
 - 

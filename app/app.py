@@ -15,8 +15,9 @@ db = config['database_cfg']
 
 # CONTROLLERS
 @app.route("/")
-def hello():
-    return "App running"
+@app.route("/index.html")
+def index():
+    return render_template('pages/index.html', title="Home", header="Home")
 
 
 @app.route("/dbtest")
