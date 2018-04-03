@@ -5,6 +5,8 @@ It includes a sample connection to a ``postgresql`` database
 
 🐍 ``Python 3.5.4`` 
 
+👢 ``Bootstrap 4.0.0``
+
 ## Implementation Notes
 - Install dependencies from ``requirements.txt``
 - 
