@@ -1,0 +1,55 @@
+<!-- extend base layout -->
+{% extends "layouts/main.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+{# Overall status #}
+    <div class="row">
+        <div class="col-lg"></div>
+    </div>
+
+
+
+{# Table of results #}
+    <div class="row">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Stat</th>
+                    <th scope="col">Career</th>
+                    <th scope="col">This Season</th>
+                    <th scope="col">Trend</th>
+                </tr>
+            </thead>
+{# Table body, one table row for each stat #}
+            <tbody id="stats">
+
+            {% for stat in stats %}
+
+                <tr>
+                    <th scope="row">{{ stat.name }}</th>
+                    <td>{{ stat.career }}%</td>
+                    <td>{{ stat.season }}%</td>
+                    <td>
+{#                        {% if stat.season > stat.career %}#}
+{#                            ↗️#}
+{#                        {% endif %}#}
+{#                        {% if stat.season < stat.career %}#}
+{#                            ↘️#}
+{#                        {% endif %}#}
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock %}

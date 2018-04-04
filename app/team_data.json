@@ -1,0 +1,24 @@
+{
+  "chi_cubs" : {
+    "name": "Chicago Cubs",
+    "playersold": ["arizzo", "kbryant", "kschwarber", "jbaez"],
+    "players": {
+      "arizzo": {
+        "name": "Anthony Rizzo"
+      },
+      "kbryant": {
+        "name": "Kris Bryant"
+      },
+      "kschwarber": {
+        "name": "Kyle Schwarber"
+      },
+      "jbaez": {
+        "name": "Javier Baez"
+      }
+    }
+  },
+  "ny_yankees": {
+    "name": "New York Yankees",
+    "players": ["gstanton", "ajudge", "bgardner", "dgregorius"]
+  }
+}
