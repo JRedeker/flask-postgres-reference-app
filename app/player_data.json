@@ -61,7 +61,7 @@
   },
   "kschwarber": {
     "name": "Kyle Schwarber",
-    "stat": {
+    "stats": {
       "BA": {
         "name": "Batting Average",
         "season": ".130",
