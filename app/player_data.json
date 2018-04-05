@@ -1,70 +1,82 @@
 {
   "arizzo": {
-    "BA": {
-      "name": "Batting Average",
-      "season": ".130",
-      "career": ".267"
-    },
-    "OBP": {
-      "name": "On Base Percentage",
-      "season": ".259",
-      "career": ".367"
-    },
-    "SLG": {
-      "name": "",
-      "season": ".261",
-      "career": ".485"
+    "name": "Anthony Rizzo",
+    "stats": {
+      "BA": {
+        "name": "Batting Average",
+        "season": ".130",
+        "career": ".267"
+      },
+      "OBP": {
+        "name": "On Base Percentage",
+        "season": ".259",
+        "career": ".367"
+      },
+      "SLG": {
+        "name": "",
+        "season": ".261",
+        "career": ".485"
+      }
     }
   },
   "kbryant": {
-    "BA": {
-      "name": "Batting Average",
-      "season": ".130",
-      "career": ".267"
-    },
-    "OBP": {
-      "name": "On Base Percentage",
-      "season": ".259",
-      "career": ".367"
-    },
-    "SLG": {
-      "name": "",
-      "season": ".261",
-      "career": ".485"
+    "name": "Kris Bryant",
+    "stats": {
+      "BA": {
+        "name": "Batting Average",
+        "season": ".130",
+        "career": ".267"
+      },
+      "OBP": {
+        "name": "On Base Percentage",
+        "season": ".259",
+        "career": ".367"
+      },
+      "SLG": {
+        "name": "",
+        "season": ".261",
+        "career": ".485"
+      }
     }
   },
   "jbaez": {
-    "BA": {
-      "name": "Batting Average",
-      "season": ".130",
-      "career": ".267"
-    },
-    "OBP": {
-      "name": "On Base Percentage",
-      "season": ".259",
-      "career": ".367"
-    },
-    "SLG": {
-      "name": "",
-      "season": ".261",
-      "career": ".485"
+    "name": "Javier Baez",
+    "stats": {
+      "BA": {
+        "name": "Batting Average",
+        "season": ".130",
+        "career": ".267"
+      },
+      "OBP": {
+        "name": "On Base Percentage",
+        "season": ".259",
+        "career": ".367"
+      },
+      "SLG": {
+        "name": "",
+        "season": ".261",
+        "career": ".485"
+      }
     }
   },
   "kschwarber": {
-    "BA": {
-      "name": "Batting Average",
-      "season": ".130",
-      "career": ".267"
-    },
-    "OBP": {
-      "name": "On Base Percentage",
-      "season": ".259",
-      "career": ".367"
-    },
-    "SLG": {
-      "name": "",
-      "season": ".261",
-      "career": ".485"
+    "name": "Kyle Schwarber",
+    "stat": {
+      "BA": {
+        "name": "Batting Average",
+        "season": ".130",
+        "career": ".267"
+      },
+      "OBP": {
+        "name": "On Base Percentage",
+        "season": ".259",
+        "career": ".367"
+      },
+      "SLG": {
+        "name": "",
+        "season": ".261",
+        "career": ".485"
+      }
     }
   }
 }

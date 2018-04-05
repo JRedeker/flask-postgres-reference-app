@@ -27,12 +27,24 @@ def get_team_name(team):
 
 def get_players(team):
     this_team_data = team_data[team]['players']
-    return this_team_data
+    this_team_players = {player: {'name': get_player_name(player)} for player in this_team_data}
+    return this_team_players
 
 
-def get_player_stats(player):
-    this_player_stats = player_data[player]
+def get_player(player_id):
+    this_player_data = player_data[player_id]
+    return this_player_data
+
+
+def get_player_stats(player_id):
+    this_player_stats = player_data[player_id]['stats']
     return this_player_stats
+
+
+def get_player_name(player_id):
+    print(player_data[player_id]['name'])
+    this_player_name = player_data[player_id]
+    return this_player_name
 
 
 # CONTROLLERS
@@ -47,7 +59,7 @@ def team_dashboard(team):
     team_name = get_team_name(team)
     players = get_players(team)
     link_data = {
-        "sub_link_title": "",
+        "sub_link_title": "Player Stats",
         "sub_link_pre": "/player_dashboard/",
         "sub_links": players
     }
@@ -56,12 +68,17 @@ def team_dashboard(team):
                            link_data=link_data)
 
 
-@app.route("/player_dashboard/<player>")
-def player_dashboard(player):
-    player_stats = get_player_stats(player)
-    print(player_stats)
-    return render_template('pages/player_dashboard.html', title="Dashboard",
-                           header="Dashboard", stats=player_stats)
+@app.route("/player_dashboard/<player_id>")
+def player_dashboard(player_id):
+    player = get_player(player_id)
+    link_data = {
+        "sub_link_title": "",
+        "sub_link_pre": "",
+        "sub_links": ""
+    }
+    return render_template('pages/player_dashboard.html', title=player.name,
+                           header="Dashboard", stats=player.stats,
+                           link_data=link_data)
 
 
 @app.route("/dbtest")
