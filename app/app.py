@@ -83,8 +83,8 @@ def player_dashboard(player_id):
         "sub_links": ""
     }
     return render_template('pages/player_dashboard.html',
-                           title=player.name,
-                           stats=player.stats,
+                           title=player['name'],
+                           player=player,
                            link_data=link_data)
 
 
