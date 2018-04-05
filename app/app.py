@@ -27,7 +27,12 @@ def get_team_name(team):
 
 def get_players(team):
     this_team_data = team_data[team]['players']
-    this_team_players = {player: {'name': get_player_name(player)} for player in this_team_data}
+    this_team_players = {
+        player_id: {
+            'name': get_player_name(player_id),
+            'position': get_player(player_id)['position']
+        } for player_id in this_team_data
+    }
     return this_team_players
 
 
@@ -42,8 +47,7 @@ def get_player_stats(player_id):
 
 
 def get_player_name(player_id):
-    print(player_data[player_id]['name'])
-    this_player_name = player_data[player_id]
+    this_player_name = player_data[player_id]['name']
     return this_player_name
 
 
@@ -59,13 +63,15 @@ def team_dashboard(team):
     team_name = get_team_name(team)
     players = get_players(team)
     link_data = {
-        "sub_link_title": "Player Stats",
+        "sub_link_title": "Team Roster",
         "sub_link_pre": "/player_dashboard/",
         "sub_links": players
     }
-    return render_template('pages/team_dashboard.html', title=team_name,
-                           team_name=team_name, players=players,
-                           link_data=link_data)
+    return render_template('pages/team_dashboard.html',
+                           title=team_name,
+                           team_name=team_name,
+                           link_data=link_data,
+                           players=players)
 
 
 @app.route("/player_dashboard/<player_id>")
@@ -76,8 +82,9 @@ def player_dashboard(player_id):
         "sub_link_pre": "",
         "sub_links": ""
     }
-    return render_template('pages/player_dashboard.html', title=player.name,
-                           header="Dashboard", stats=player.stats,
+    return render_template('pages/player_dashboard.html',
+                           title=player.name,
+                           stats=player.stats,
                            link_data=link_data)
 
 

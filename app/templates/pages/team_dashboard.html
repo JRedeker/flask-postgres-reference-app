@@ -19,13 +19,13 @@
 
         <table class="table">
 
-        {% for player in players %}
+        {% for player in players|sort %}
 
             <tr class="">
-
                 <th class="col-lg">
-                    <a href="/player_dashboard/{{ player }}">{{ player.name }}</a>
+                    {{ players[player]['position'] }} <a href="/player_dashboard/{{ player }}">{{ players[player]['name'] }}</a>
                 </th>
+
             </tr>
 
         {% endfor %}

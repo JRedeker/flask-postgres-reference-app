@@ -1,6 +1,7 @@
 {
   "arizzo": {
     "name": "Anthony Rizzo",
+    "position": "1B",
     "stats": {
       "BA": {
         "name": "Batting Average",
@@ -21,6 +22,7 @@
   },
   "kbryant": {
     "name": "Kris Bryant",
+    "position": "3B",
     "stats": {
       "BA": {
         "name": "Batting Average",
@@ -41,6 +43,7 @@
   },
   "jbaez": {
     "name": "Javier Baez",
+    "position": "2B",
     "stats": {
       "BA": {
         "name": "Batting Average",
@@ -61,6 +64,7 @@
   },
   "kschwarber": {
     "name": "Kyle Schwarber",
+    "position": "LF",
     "stats": {
       "BA": {
         "name": "Batting Average",
