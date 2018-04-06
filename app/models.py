@@ -8,7 +8,7 @@ class Team(db.Model):
     __tablename__ = 'teams'
 
     team_id = db.Column(db.String(60), primary_key=True)
-    name = db.Column(db.String(120))
+    name = db.Column(db.String(120), unique=True)
 
     def __init__(self, name):
         self.name = name
@@ -30,7 +30,7 @@ class Statistic(db.Model):
     __tablename__ = 'statistics'
 
     stat_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(60))
+    name = db.Column(db.String(60), unique=True)
     position_type = db.Column(db.String(20))
     positive = db.Column(db.BOOLEAN())
 
