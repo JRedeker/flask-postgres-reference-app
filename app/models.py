@@ -1,6 +1,12 @@
+from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 from app import db
 
 engine = db.create_engine(echo=True)
+db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
+
+Base = declarative_base()
+Base.query = db_session.query_property()
 
 
 # Set your classes here.
@@ -9,7 +15,7 @@ class Team(db.Model):
 
     team_id = db.Column(db.String(60), primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
-    players = db.relationship('Player')
+    players = db.relationship('Player', backref='team')
 
     def __init__(self, name):
         self.name = name
@@ -58,3 +64,7 @@ class PlayerStat(db.Model):
         self.player_id = player_id
         self.career = career
         self.recent = recent
+
+
+# Create tables
+Base.metadata.create_all(bind=engine)

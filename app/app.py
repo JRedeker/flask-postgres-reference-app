@@ -11,6 +11,11 @@ app.config.from_pyfile('configure.py')
 
 db = SQLAlchemy(app)
 
+# Auto tear down
+@app.teardown_request
+def shutdown_session(exception=None):
+    db_session.remove()
+
 # data placeholder
 team_data = json.load(open("team_data.json"))
 player_data = json.load(open("player_data.json"))
