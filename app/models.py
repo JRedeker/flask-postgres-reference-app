@@ -8,7 +8,10 @@ class Team(db.Model):
     __tablename__ = 'teams'
 
     team_id = db.Column(db.String(60), primary_key=True)
-    players = db.Column(db.BOOLEAN)
+    name = db.Column(db.String(120))
+
+    def __init__(self, name):
+        self.name = name
 
 
 class Player(db.Model):
@@ -18,8 +21,7 @@ class Player(db.Model):
     name = db.Column(db.String(120))
     team_id = db.Column(db.String(60))
 
-    def __init__(self, player_id, name, team_id):
-        self.player_id = player_id
+    def __init__(self, name, team_id):
         self.name = name
         self.team_id = team_id
 
