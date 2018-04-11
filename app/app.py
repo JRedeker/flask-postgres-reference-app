@@ -8,13 +8,14 @@ from flask import Flask, render_template
 # APP CONFIG
 app = Flask(__name__)
 app.config.from_pyfile('configure.py')
-
 db = SQLAlchemy(app)
+
 
 # Auto tear down
 @app.teardown_request
 def shutdown_session(exception=None):
-    db_session.remove()
+    db.close()
+
 
 # data placeholder
 team_data = json.load(open("team_data.json"))
