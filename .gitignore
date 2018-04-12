@@ -107,3 +107,9 @@ ENV/
 .idea/workspace.xml
 app/.DS_Store
 .idea/
+/app/package-lock.json
+/app/package.json
+app/static/fonts/
+app/static/icons/
+app/static/img/
+app/templates/forms/
