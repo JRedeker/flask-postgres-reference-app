@@ -1,58 +1,19 @@
 # IMPORTS
-import json
-import os
 
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
-# APP CONFIG
+# create the application object
 app = Flask(__name__)
+
+# configure the application
 app.config.from_pyfile('configure.py')
+
+# create the sqlalchemy object
 db = SQLAlchemy(app)
 
-
-# Auto tear down
-@app.teardown_request
-def shutdown_session(exception=None):
-    db.close()
-
-
-# data placeholder
-team_data = json.load(open("team_data.json"))
-player_data = json.load(open("player_data.json"))
-
-# placeholder data and methods just deal with it
-
-
-def get_team_name(team):
-    this_team_name = team_data[team]['name']
-    return this_team_name
-
-
-def get_players(team):
-    this_team_data = team_data[team]['players']
-    this_team_players = {
-        player_id: {
-            'name': get_player_name(player_id),
-            'position': get_player(player_id)['position']
-        } for player_id in this_team_data
-    }
-    return this_team_players
-
-
-def get_player(player_id):
-    this_player_data = player_data[player_id]
-    return this_player_data
-
-
-def get_player_stats(player_id):
-    this_player_stats = player_data[player_id]['stats']
-    return this_player_stats
-
-
-def get_player_name(player_id):
-    this_player_name = player_data[player_id]['name']
-    return this_player_name
+# import db scheme
+from models import *
 
 
 # CONTROLLERS
@@ -92,9 +53,11 @@ def player_dashboard(player_id):
                            link_data=link_data)
 
 
-# Error Handlers
+# # Database test
+# @app.route("/dbtest")
+# def database_test():
 
-
+# error handlers
 @app.errorhandler(500)
 def internal_error(error):
     return render_template('errors/500.html'), 500
@@ -106,7 +69,5 @@ def not_found_error(error):
 
 
 # 🚀 LAUNCH  🚀
-
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
