@@ -1,4 +1,4 @@
-from dashboard.dashboard import db
+from dashboard.app import db
 from dashboard.models import Team, Player
 
 db.drop_all()

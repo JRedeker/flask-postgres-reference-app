@@ -1,4 +1,4 @@
-from dashboard.dashboard import db
+from dashboard.app import db
 from dashboard.models import *
 
 db.drop_all()
@@ -24,13 +24,19 @@ db.session.flush()
 # insert stats
 ba = Statistic("Batting Average", "Batting", True)
 obp = Statistic("On Base Percentage", "Batting", True)
-sp = Statistic("Slugging Percentage", "Batting", True)
+slg = Statistic("Slugging Percentage", "Batting", True)
 
-db.session.add_all([ba, obp, sp])
+db.session.add_all([ba, obp, slg])
 
 db.session.flush()
 
 # insert player stat records
-db.session.add(PlayerStat(ba.id, arizzo.id, .300, .260))
+db.session.add(PlayerStat(ba.id, arizzo.id, .273, .268))
+db.session.add(PlayerStat(obp.id, arizzo.id, .366, .219))
+db.session.add(PlayerStat(slg.id, arizzo.id, .214, .485))
+
+db.session.add(PlayerStat(ba.id, kbryant.id, .289, .348))
+db.session.add(PlayerStat(obp.id, kbryant.id, .390, .464))
+db.session.add(PlayerStat(slg.id, kbryant.id, .530, .630))
 
 db.session.commit()

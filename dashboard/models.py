@@ -1,5 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-from dashboard.dashboard import db
+from database import db
 
 
 # Set your classes here.
