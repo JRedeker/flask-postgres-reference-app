@@ -11,7 +11,10 @@ app.config.from_pyfile('configure.py')
 db = SQLAlchemy(app)
 
 # import db scheme
-from dashboard import models
+from models import *
+
+db.create_all()
+db.session.commit()
 
 
 # CONTROLLERS
@@ -23,18 +26,24 @@ def index():
 
 @app.route("/team_dashboard/<team>")
 def team_dashboard(team):
-    team_name = get_team_name(team)
-    players = get_players(team)
-    link_data = {
-        "sub_link_title": "Team Roster",
-        "sub_link_pre": "/player_dashboard/",
-        "sub_links": players
-    }
-    return render_template('pages/team_dashboard.html',
-                           title=team_name,
-                           team_name=team_name,
-                           link_data=link_data,
-                           players=players)
+
+    team = Team.query.filter_by(name=team)
+    render_template("Hello WOrld")
+
+# @app.route("/team_dashboard/<team>")
+# def team_dashboard(team):
+#     team_name = get_team_name(team)
+#     players = get_players(team)
+#     link_data = {
+#         "sub_link_title": "Team Roster",
+#         "sub_link_pre": "/player_dashboard/",
+#         "sub_links": players
+#     }
+#     return render_template('pages/team_dashboard.html',
+#                            title=team_name,
+#                            team_name=team_name,
+#                            link_data=link_data,
+#                            players=players)
 
 
 @app.route("/player_dashboard/<player_id>")

@@ -8,7 +8,7 @@ class Team(db.Model):
 
     team_id = db.Column(db.String(60), primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
-    players = db.relationship('Player', backref='team')
+    players = db.relationship('Player', backref='team_id')
 
     def __init__(self, name):
         self.name = name
