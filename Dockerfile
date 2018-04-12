@@ -8,7 +8,7 @@ RUN apt-get update -y \
 # clean up installs
 RUN rm -rf /var/lib/apt/lists/*
 
-COPY ./app /app
+COPY dashboard /app
 
 COPY requirements.txt /tmp
 
