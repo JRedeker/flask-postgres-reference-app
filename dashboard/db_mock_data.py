@@ -1,42 +1,43 @@
-from dashboard.app import db
-from dashboard.models import *
+from flask_sqlalchemy import SQLAlchemy
 
-db.drop_all()
-db.create_all()
+from app import *
+from models import Team, Player, Statistic, PlayerStat
 
-# insert teams
-cubs = Team("Chicago Cubs")
-yankees = Team('New York Yankees')
-tigers = Team("Detroit Tigers")
-db.session.add_all([cubs, yankees, tigers])
 
-db.session.flush()
+def mock_data():
+    # insert teams
+    cubs = Team("Chicago Cubs")
+    yankees = Team('New York Yankees')
+    tigers = Team("Detroit Tigers")
+    db.session.add_all([cubs, yankees, tigers])
 
-# insert players
-arizzo = Player("Anthony Rizzo", cubs.id)
-kbryant = Player("Kris Bryant", cubs.id)
-kschwarber = Player("Kyle Schwarber", cubs.id)
-jbaez = Player("Javier Baez", cubs.id)
-db.session.add_all([arizzo, kbryant, kschwarber, jbaez])
+    db.session.flush()
 
-db.session.flush()
+    # insert players
+    arizzo = Player("Anthony Rizzo", cubs.id)
+    kbryant = Player("Kris Bryant", cubs.id)
+    kschwarber = Player("Kyle Schwarber", cubs.id)
+    jbaez = Player("Javier Baez", cubs.id)
+    db.session.add_all([arizzo, kbryant, kschwarber, jbaez])
 
-# insert stats
-ba = Statistic("Batting Average", "Batting", True)
-obp = Statistic("On Base Percentage", "Batting", True)
-slg = Statistic("Slugging Percentage", "Batting", True)
+    db.session.flush()
 
-db.session.add_all([ba, obp, slg])
+    # insert stats
+    ba = Statistic("Batting Average", "Batting", True)
+    obp = Statistic("On Base Percentage", "Batting", True)
+    slg = Statistic("Slugging Percentage", "Batting", True)
 
-db.session.flush()
+    db.session.add_all([ba, obp, slg])
 
-# insert player stat records
-db.session.add(PlayerStat(ba.id, arizzo.id, .273, .268))
-db.session.add(PlayerStat(obp.id, arizzo.id, .366, .219))
-db.session.add(PlayerStat(slg.id, arizzo.id, .214, .485))
+    db.session.flush()
 
-db.session.add(PlayerStat(ba.id, kbryant.id, .289, .348))
-db.session.add(PlayerStat(obp.id, kbryant.id, .390, .464))
-db.session.add(PlayerStat(slg.id, kbryant.id, .530, .630))
+    # insert player stat records
+    db.session.add(PlayerStat(ba.id, arizzo.id, .273, .268))
+    db.session.add(PlayerStat(obp.id, arizzo.id, .366, .219))
+    db.session.add(PlayerStat(slg.id, arizzo.id, .214, .485))
 
-db.session.commit()
+    db.session.add(PlayerStat(ba.id, kbryant.id, .289, .348))
+    db.session.add(PlayerStat(obp.id, kbryant.id, .390, .464))
+    db.session.add(PlayerStat(slg.id, kbryant.id, .530, .630))
+
+    db.session.commit()
