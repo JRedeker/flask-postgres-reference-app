@@ -1,0 +1,22 @@
+<div class="sidebar bg-dark">
+    <ul class="list-unstyled">
+        <li><a href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
+        <li><a href="#"><i class="fa fa-fw fa-baseball"></i> {{ title }}</a></li>
+
+{#        If this has sub links... add the dropdown for them #}
+    {% if link_data['sub_link_title'] %}
+
+        <li>
+            <a href="#submenu1" data-toggle="collapse"><i class="fa fa-fw fa-clipboard-list"></i> {{ link_data['sub_link_title'] }}</a>
+            <ul id="submenu1" class="list-unstyled collapse">
+                {% for sub_link in link_data['sub_links'] %}
+                    <li><a href="{{ link_data['sub_link_pre'] }}{{ sub_link }}">{{ link_data['sub_links'][sub_link]['name'] }}</a></li>
+                {% endfor %}
+
+            </ul>
+        </li>
+
+    {% endif %}
+
+    </ul>
+</div>
