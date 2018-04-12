@@ -11,9 +11,8 @@ app.config.from_pyfile('configure.py')
 db = SQLAlchemy(app)
 
 # import db scheme
-from models import *
+from dashboard.models import db
 
-db.create_all()
 db.session.commit()
 
 

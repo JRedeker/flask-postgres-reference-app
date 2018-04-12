@@ -1,14 +1,14 @@
 from flask_sqlalchemy import SQLAlchemy
-from dashboard import db
+from dashboard.dashboard import db
 
 
 # Set your classes here.
 class Team(db.Model):
     __tablename__ = 'teams'
 
-    team_id = db.Column(db.String(60), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
-    players = db.relationship('Player', backref='team_id')
+    players = db.relationship('Player', backref='teams', lazy=True)
 
     def __init__(self, name):
         self.name = name
@@ -20,9 +20,9 @@ class Team(db.Model):
 class Player(db.Model):
     __tablename__ = 'players'
 
-    player_id = db.Column(db.String(60), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
-    team_id = db.Column(db.String(60))
+    team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
 
     def __init__(self, name, team_id):
         self.name = name
@@ -30,9 +30,9 @@ class Player(db.Model):
 
 
 class Statistic(db.Model):
-    __tablename__ = 'statistics'
+    __tablename__ = 'stats'
 
-    stat_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60), unique=True, nullable=False)
     position_type = db.Column(db.String(20))
     positive = db.Column(db.Boolean())
@@ -47,10 +47,10 @@ class PlayerStat(db.Model):
     __tablename__ = 'player_stats'
 
     id = db.Column(db.Integer, primary_key=True)
-    stat_id = db.Column(db.Integer, nullable=False)
-    player_id = db.Column(db.String(60))
-    career = db.Column(db.Integer)
-    recent = db.Column(db.Integer)
+    stat_id = db.Column(db.Integer, db.ForeignKey('stats.id'), nullable=False)
+    player_id = db.Column(db.Integer, db.ForeignKey('players.id'), nullable=False)
+    career = db.Column(db.DECIMAL)
+    recent = db.Column(db.DECIMAL)
 
     def __init__(self, stat_id, player_id, career, recent):
         self.stat_id = stat_id
