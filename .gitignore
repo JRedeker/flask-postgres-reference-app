@@ -113,3 +113,4 @@ dashboard/static/fonts/
 dashboard/static/icons/
 dashboard/static/img/
 dashboard/templates/forms/
+/dashboard/node_modules/

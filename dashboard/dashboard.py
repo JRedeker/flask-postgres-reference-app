@@ -3,10 +3,8 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-# create the application object
+# create the application object and configure
 app = Flask(__name__)
-
-# configure the application
 app.config.from_pyfile('configure.py')
 
 # create the sqlalchemy object
