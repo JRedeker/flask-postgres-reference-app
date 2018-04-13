@@ -8,5 +8,5 @@ DEBUG = True
 DEVELOPMENT = True
 TESTING = False
 SECRET_KEY = 'secret-secret'
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+SQLALCHEMY_DATABASE_URI = "postgresql://localhost:5432/postgres" #os.environ.get('DATABASE_URL')
 SQLALCHEMY_TRACK_MODIFICATIONS = False

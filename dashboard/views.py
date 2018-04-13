@@ -9,8 +9,13 @@ views = Blueprint('views', __name__, template_folder='templates', static_folder=
 @views.route("/")
 @views.route("/index.html")
 def index():
-    this = Team.query.filter_by(id=1).first()
-    return this.name
+    teams = Team.query.order_by(Team.name).all()
+    link_data = {
+        "sub_link_title": "Teams",
+        "sub_link_pre": "/team_dashboard/",
+        "sub_links": teams
+    }
+    return render_template('pages/index.html', title='home', teams=teams, link_data=link_data)
 
 
 @views.route("/team_dashboard/<team_id>")
