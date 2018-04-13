@@ -1,6 +1,6 @@
 from flask import render_template
 from flask.blueprints import Blueprint
-from finder import get_top_ba_players, get_player_stats, get_teams
+from sql import get_top_ba_players, get_player_stats, get_teams, get_team_players
 from models import Team, Player, Statistic, PlayerStat
 
 views = Blueprint('views', __name__, template_folder='templates', static_folder='static')
@@ -23,7 +23,7 @@ def index():
 @views.route("/team_dashboard/<team_id>")
 def team_dashboard(team_id):
     team = Team.query.filter_by(id=team_id).first()
-    players = Player.query.filter_by(team_id=team_id).all()
+    players = get_team_players(team_id)
     link_data = {
         "sub_link_title": "{} Roster".format(team.name),
         "sub_link_pre": "/player_dashboard/",

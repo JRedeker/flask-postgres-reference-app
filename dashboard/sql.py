@@ -19,6 +19,11 @@ def get_player_stats(player_id):
     return player_stats
 
 
+def get_team_players(team_id):
+    players = Player.query.filter_by(team_id=team_id).all()
+    return players
+
+
 def get_teams():
-    teams = Team.query.all()
+    teams = Team.query.order_by(Team.name).all()
     return teams
