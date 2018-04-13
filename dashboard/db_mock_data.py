@@ -3,6 +3,10 @@ from models import Team, Player, Statistic, PlayerStat
 
 
 def mock_data():
+
+    db.drop_all()
+    db.create_all()
+
     # insert teams
     cubs = Team("Chicago Cubs")
     yankees = Team('New York Yankees')
@@ -12,18 +16,18 @@ def mock_data():
     db.session.flush()
 
     # insert players
-    arizzo = Player("Anthony Rizzo", cubs.id)
-    kbryant = Player("Kris Bryant", cubs.id)
-    kschwarber = Player("Kyle Schwarber", cubs.id)
-    jbaez = Player("Javier Baez", cubs.id)
+    arizzo = Player("Anthony Rizzo", "1B", cubs.id)
+    kbryant = Player("Kris Bryant", "3B", cubs.id)
+    kschwarber = Player("Kyle Schwarber", "LF", cubs.id)
+    jbaez = Player("Javier Baez", "2B", cubs.id)
     db.session.add_all([arizzo, kbryant, kschwarber, jbaez])
 
     db.session.flush()
 
     # insert stats
-    ba = Statistic("Batting Average", "Batting", True)
-    obp = Statistic("On Base Percentage", "Batting", True)
-    slg = Statistic("Slugging Percentage", "Batting", True)
+    ba = Statistic("Batting Average", "Batting", "%", True)
+    obp = Statistic("On Base Percentage", "Batting", "%", True)
+    slg = Statistic("Slugging Percentage", "Batting", "%", True)
 
     db.session.add_all([ba, obp, slg])
 

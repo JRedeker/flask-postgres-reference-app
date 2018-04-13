@@ -1,6 +1,6 @@
 from flask import render_template
 from flask.blueprints import Blueprint
-from database import db
+from finder import get_top_ba_players, get_player_stats, get_teams
 from models import Team, Player, Statistic, PlayerStat
 
 views = Blueprint('views', __name__, template_folder='templates', static_folder='static')
@@ -11,43 +11,44 @@ views = Blueprint('views', __name__, template_folder='templates', static_folder=
 def index():
     teams = Team.query.order_by(Team.name).all()
     link_data = {
-        "sub_link_title": "Teams",
-        "sub_link_pre": "/team_dashboard/",
-        "sub_links": teams
+        "sub_link_title": "",
+        "sub_link_pre": "",
+        "sub_links": "",
+        "top_players": get_top_ba_players(),
+        "teams": get_teams()
     }
-    return render_template('pages/index.html', title='home', teams=teams, link_data=link_data)
+    return render_template('pages/index.html', title='Home', teams=teams, link_data=link_data)
 
 
 @views.route("/team_dashboard/<team_id>")
 def team_dashboard(team_id):
     team = Team.query.filter_by(id=team_id).first()
     players = Player.query.filter_by(team_id=team_id).all()
-    print(team.name)
     link_data = {
-        "sub_link_title": "Team Roster",
+        "sub_link_title": "{} Roster".format(team.name),
         "sub_link_pre": "/player_dashboard/",
-        "sub_links": players
+        "sub_links": players,
+        "top_players": get_top_ba_players(),
+        "teams": get_teams()
     }
-    return render_template('pages/team_dashboard.html',
-                           title=team.name,
-                           team_name=team.name,
-                           link_data=link_data,
+    return render_template('pages/team_dashboard.html', title=team.name, team_name=team.name, link_data=link_data,
                            players=players)
 
 
 @views.route("/player_dashboard/<player_id>")
 def player_dashboard(player_id):
     player = Player.query.filter_by(id=player_id).first()
-    player_stats = PlayerStat.query.filter_by(player_id=player_id)
+    player_stats = get_player_stats(player_id)
+    print(player_stats)
     link_data = {
         "sub_link_title": "",
         "sub_link_pre": "",
-        "sub_links": ""
+        "sub_links": "",
+        "top_players": get_top_ba_players(),
+        "teams": get_teams()
     }
-    return render_template('pages/player_dashboard.html',
-                           title=player.name,
-                           player=player,
-                           link_data=link_data)
+    return render_template('pages/player_dashboard.html', title=player.name, player=player, link_data=link_data,
+                           stats=player_stats)
 
 
 # error handlers

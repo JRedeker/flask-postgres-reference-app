@@ -3,12 +3,10 @@
 
 {% block content %}
 
-<div class="container-fluid">
-
 {# Header #}
     <div class="row">
         <div class="col-lg">
-            <h2>{{ player['name'] }}</h2>
+            <h2>{{ player.name }}</h2>
         </div>
     </div>
 
@@ -34,17 +32,17 @@
 {# Table body, one table row for each stat #}
             <tbody id="stats">
 
-            {% for stat in player['stats'] %}
+            {% for stat in stats %}
 
                 <tr>
-                    <th scope="row">{{ stat }}</th>
-                    <td>{{ player['stats'][stat]['career'] }}%</td>
-                    <td>{{ player['stats'][stat]['season'] }}%</td>
+                    <th scope="row">{{ stat.name }}</th>
+                    <td>{{ stat.career }}</td>
+                    <td>{{ stat.recent }}</td>
                     <td>
-                        {% if player['stats'][stat]['season'] > player['stats'][stat]['career'] %}
+                        {% if stat.recent > stat.career %}
                             <i class="fa fa-fw fa-arrow-up"></i>
                         {% endif %}
-                        {% if player['stats'][stat]['season'] < player['stats'][stat]['career'] %}
+                        {% if stat.recent < stat.career %}
                             <i class="fa fa-fw fa-arrow-down"></i>
                         {% endif %}
                     </td>
@@ -55,8 +53,6 @@
             </tbody>
         </table>
     </div>
-
-</div>
 
 
 {% endblock %}

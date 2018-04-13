@@ -21,10 +21,12 @@ class Player(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
+    position = db.Column(db.String(30))
     team_id = db.Column(db.Integer, db.ForeignKey('teams.id'))
 
-    def __init__(self, name, team_id):
+    def __init__(self, name, position, team_id):
         self.name = name
+        self.position = position
         self.team_id = team_id
 
 
@@ -33,12 +35,14 @@ class Statistic(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60), unique=True, nullable=False)
+    stat_type = db.Column(db.String(60), nullable=False)
     position_type = db.Column(db.String(20))
     positive = db.Column(db.Boolean())
 
-    def __init__(self, name, position_type, positive):
+    def __init__(self, name, position_type, stat_type, positive):
         self.name = name
         self.position_type = position_type
+        self.stat_type = stat_type
         self.positive = positive
 
 

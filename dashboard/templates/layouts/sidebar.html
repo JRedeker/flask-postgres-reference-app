@@ -1,16 +1,24 @@
 <div class="sidebar bg-dark">
     <ul class="list-unstyled">
-        <li><a href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
-        <li><a href="#"><i class="fa fa-fw fa-baseball"></i> {{ title }}</a></li>
+        <li><a href="/index.html"><i class="fa fa-fw fa-home"></i> Home</a></li>
+    
+        {% if title != "Home" %}
+            <li><a href="#"><i class="fa fa-fw fa-baseball"></i> {{ title }}</a></li>
+        {% endif %}
+
 
 {#        If this has sub links... add the dropdown for them #}
     {% if link_data['sub_link_title'] %}
 
         <li>
-            <a href="#submenu1" data-toggle="collapse"><i class="fa fa-fw fa-clipboard-list"></i> {{ link_data['sub_link_title'] }}</a>
+            <a href="#submenu1" data-toggle="collapse"><i class="fa fa-fw fa-clipboard-list"></i> {{ link_data.sub_link_title }}</a>
+
             <ul id="submenu1" class="list-unstyled collapse">
-                {% for sub_link in link_data['sub_links'] %}
-                    <li><a href="{{ link_data['sub_link_pre'] }}{{ sub_link }}">{{ link_data['sub_links'][sub_link].name }}</a></li>
+
+                {% for sub_link in link_data.sub_links %}
+
+                    <li><a href="{{ link_data.sub_link_pre }}{{ sub_link.id }}">{{ sub_link.name }}</a></li>
+
                 {% endfor %}
 
             </ul>
@@ -18,5 +26,39 @@
 
     {% endif %}
 
+
+
+
+        <li>
+            <a href="#submenu3" data-toggle="collapse"><i class="fa fa-fw fa-users"></i> Teams </a>
+
+            <ul id="submenu3" class="list-unstyled collapse">
+
+                {% for team in link_data.teams %}
+
+                    <li><a href="/team_dashboard/{{ team.id }}">{{ team.name }}</a></li>
+
+                {% endfor %}
+
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="#submenu2" data-toggle="collapse"><i class="fa fa-fw fa-user"></i> League Top Players </a>
+
+            <ul id="submenu2" class="list-unstyled collapse">
+
+                {% for player in link_data.top_players %}
+
+                    <li><a href="/player_dashboard/{{ player.id }}">{{ player.name }}</a></li>
+
+                {% endfor %}
+
+            </ul>
+        </li>
+
     </ul>
+
+
 </div>

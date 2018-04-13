@@ -3,8 +3,6 @@
 
 {% block content %}
 
-<div class="container-fluid">
-
 
 {# Player Stats Links #}
 <div class="row">
@@ -19,11 +17,11 @@
 
         <table class="table">
 
-        {% for player in players|sort %}
+        {% for player in players %}
 
             <tr class="">
                 <th class="col-lg">
-                    {{ players[player]['position'] }} <a href="/player_dashboard/{{ player }}">{{ players[player]['name'] }}</a>
+                    {{ player.position }} <a href="/player_dashboard/{{ player.id }}">{{ player.name }}</a>
                 </th>
 
             </tr>
@@ -32,8 +30,6 @@
 
         </table>
     </div>
-</div>
-
 </div>
 
 {% endblock %}
