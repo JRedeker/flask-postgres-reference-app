@@ -3,11 +3,11 @@ from flask.blueprints import Blueprint
 from database.sql import get_top_ba_players, get_player_stats, get_teams, get_team_players
 from database.models import Team, Player
 
-views = Blueprint('views', __name__, template_folder='templates', static_folder='static')
+dashboard = Blueprint('dashboard', __name__, template_folder='templates', static_folder='static')
 
 
-@views.route("/")
-@views.route("/index.html")
+@dashboard.route("/")
+@dashboard.route("/index.html")
 def index():
     teams = Team.query.order_by(Team.name).all()
     link_data = {
@@ -20,7 +20,7 @@ def index():
     return render_template('pages/index.html', title='Home', teams=teams, link_data=link_data)
 
 
-@views.route("/team_dashboard/<team_id>")
+@dashboard.route("/team_dashboard/<team_id>")
 def team_dashboard(team_id):
     team = Team.query.filter_by(id=team_id).first()
     players = get_team_players(team_id)
@@ -35,7 +35,7 @@ def team_dashboard(team_id):
                            players=players)
 
 
-@views.route("/player_dashboard/<player_id>")
+@dashboard.route("/player_dashboard/<player_id>")
 def player_dashboard(player_id):
     player = Player.query.filter_by(id=player_id).first()
     player_stats = get_player_stats(player_id)
@@ -52,11 +52,11 @@ def player_dashboard(player_id):
 
 
 # error handlers
-@views.errorhandler(500)
+@dashboard.errorhandler(500)
 def internal_error(error):
     return render_template('errors/500.html'), 500
 
 
-@views.errorhandler(404)
+@dashboard.errorhandler(404)
 def not_found_error(error):
     return render_template('errors/404.html'), 404
