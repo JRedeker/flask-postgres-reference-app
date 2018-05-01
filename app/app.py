@@ -1,6 +1,6 @@
-from database import db
+from database.database import db
 from flask import Flask
-from app.views import views
+from dashboard import views
 # import db_mock_data
 
 

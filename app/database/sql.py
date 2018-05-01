@@ -1,4 +1,4 @@
-from app.models import Team, Player, PlayerStat, Statistic
+from database.models import Team, Player, PlayerStat, Statistic
 
 
 # Some logic that will be used numerous times for different views
