@@ -1,5 +1,7 @@
-from database.database import db
+from api.database import db
 from flask import Flask
+from flask_api import FlaskAPI
+from api.views import api
 from dashboard.views import dashboard
 # import db_mock_data
 
@@ -10,6 +12,7 @@ def create_app():
     app.config.from_pyfile('configure.py')
     with app.app_context():
         db.init_app(app)
+        app.register_blueprint(api, url_prefix='/api')
         app.register_blueprint(dashboard, url_prefix='')
     return app
 

@@ -1,7 +1,7 @@
 from flask import render_template
 from flask.blueprints import Blueprint
-from database.sql import get_top_ba_players, get_player_stats, get_teams, get_team_players
-from database.models import Team, Player
+from api.sql import get_top_ba_players, get_player_stats, get_teams, get_team_players
+from api.models import Team, Player
 
 dashboard = Blueprint('dashboard', __name__, template_folder='templates', static_folder='static')
 

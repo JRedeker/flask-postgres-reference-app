@@ -1,4 +1,4 @@
-from database.models import Team, Player, PlayerStat, Statistic
+from api.models import Team, Player, PlayerStat, Statistic
 
 
 # Some logic that will be used numerous times for different views
@@ -14,7 +14,7 @@ def get_top_ba_players():
     return players
 
 
-def get_player_stats(player_id):
+def get_single_player_stats(player_id):
     player_stats = PlayerStat.query.join(Statistic).filter_by(id=player_id).all()
     return player_stats
 

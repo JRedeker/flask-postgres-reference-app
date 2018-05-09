@@ -1,4 +1,4 @@
-from database.database import db
+from api.database import db
 
 
 # Set your classes here.

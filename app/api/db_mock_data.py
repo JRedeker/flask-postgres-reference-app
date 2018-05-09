@@ -1,4 +1,4 @@
-from database.models import Team, Player, Statistic, PlayerStat
+from api.models import Team, Player, Statistic, PlayerStat
 
 
 def mock_data():
